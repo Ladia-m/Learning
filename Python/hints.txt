@@ -1,0 +1,686 @@
+**### MATH ###**
+mocniny ( 2**5 - dve na patou )
+% - mod - zbytek po deleni
+min(<value1>, <value2>, ..., <valueN>) - minimum value of given arguments 
+max(<value1>, <value2>, ..., <valueN>) - maxiumum value of given arguments
+abs(<value>) - absolute value
+sum(<list>) - sums the items in list
+round(<var>, <number of positions behind coma>) - rounding the numbers
+
+
+**### STRING ###**
+transform fce:
+	<var>.upper()
+	<var>.lower()
+	<var>.capitalize() - add capital at begining of line
+	<var>.title() - add capital at begining of each word
+math with string:
+	<var1> + <var2> = <var1><var2>
+	<var1> * 3 = <var1><var1><var1>
+formating:
+	\n - new line
+	\t - tab (4 spaces)
+	" au to ".strip() - "au to" remove white spaces or any character in brackets from the begining and end of expression
+	" au to ".lstrip() - "au to "
+	" au to ".rstrip() - " au to"
+other functions:
+	long_text.find("<expression>") - returns the position of first match
+	long_text.count("<expression>")
+	long_text.replace("<expression1>", "<expression2>") - replace exp1 with exp2
+	len(<var>) - prints the count of characters in/length of <var>
+	<text>.split("<separator>") - separate text into parts and print them as a list
+	"<string>".startswith("<expresion>") - test if <string> starts with <expression>
+	"<string>".endswith("<expresion>") - test if <string> ends with <expression>
+	<joint>.join([<list of items to be joined by joint>])
+
+**### INPUT/OUTPUT CONTROL ###**
+type<var> - print out the type of variable
+int/str/float(<var>) - print <var> into int/str/float (if var=2.9 then int(var) = 2)
+<var>.isdigit() - STRING only! print true/false if <var> contains only numbers (could be integer) 
+<var>.isalpha() - STRING only! print true/false if <var> contains only letters (could be integer)
+<var> = input("<text_before_input>") - read input (only not string variables)
+<var> = raw_input("<text_before_input>") - read input into string
+<var>.format:
+			- <str> = "Some text {} and other text {}" ; <str>.format(<var1>, <var2>) - predefines positions for variables and then by .format prints the text with selected variables
+			- <str> = "Some text {<name_of_this_position1>} and other text {<name_of_this_position2>}" ; <str>.format(<name_of_this_position1>=<some_variable1>, <name_of_this_position2>=<some_variable2> - you can define name of position in text to make it clear where goes what (usable for example in long text, whitch you will use periodically with different values)
+			-	print("Text1 {0} text2 {1} text3 {0}".format("A", "B"))
+				Text1 A text2 B text3 A
+
+**### LISTS ###**
+<list> = [<item0>, <item1> , <item..20>]
+<list>[0] - prints first item in list
+<list>[2] = <item_x> - replace 3rd item in <list> list with <item_x>
+<list>[-1] - print last item from list (if negative number provided, then python counts from the end of the list)
+<list>[<x>:<y>] - print all items betwen indexes <x> and <y> including item with index <x>, but not <y>
+<list>[<x>:] - print all items from <x> to end
+<list>[:<x>] - print all items from beginning until <x>
+<list>[<x>:<y>:<z>] - print all items betwen indexes <x> and <y> including item with index <x>, but not <y>, <z> represents the step
+len(<list>) - print # of items in list
+<list>.count(<item>) - prints how many times is <item> in the <list>
+<list>.index(<item>) - prints the position of <item> in the <list> (only the first appearance)
+<item> in <list> - test if <item> is present in list <list> (bolean)
+<list>.append(<item>) - add <item> to the end of the <list>
+<list>.insert([index],<value>) - put new value into specific position in list
+<list1>.extend(<list2>) - puts items from <list2> to the <list1> (list1 = [1 , 2] ; list2 = [4 , 5]; list1.extend(list2); list1; [1, 2, 4, 5])
+<list1> + <list2> - prints one list containing items from <list1> and <list2> (simillar to <list1>.extend(<list2>))
+<list> = [1, 2]; <list> * 3 - print list of [1, 2, 1, 2, 1, 2]
+<list>.remove(<item>) - removes <item> form the <list>
+<list>.sort() - sorts items in the <list>
+<list>.reverse() - revers the order of items in the <list>
+max(<list>) - Returns the list item with the maximum value
+min(<list>) - Returns the list item with minimum value
+using range to create list:
+	<list>=list(range(<value>))
+	!difference between python 2.X and 3.X:
+	2.X - nums=range(5)
+		 print(nums)
+		 [0, 1, 2, 3, 4]
+	3.X - nums=range(5)
+		 print(nums)
+		 range(0, 5)
+	therefore always use <list>=list(range(<value>))
+print("<separator>".join(<list>)) - prints intems of <list> separated by <separator>
+**List comprehensions** are a useful way of quickly creating lists whose contents obey a simple rule.
+For example, we can do the following:
+cubes = [i**3 for i in range(5)]
+print(cubes)
+[0, 1, 8, 27, 64]
+or
+evens=[i**2** for i in range(10) if i** % 2 == 0]
+[0, 4, 16, 36, 64]
+**List functions**
+if **all**([<test> for i in <list>]): - true if all items in <list> pass the <test>
+if **any**([<test> for i in <list>]): - true if any item in <list> pass the <test>
+example:
+	nums = [55, 44, 33, 22, 11]
+	if any([i % 2 == 0 for i in nums]):
+	   print("At least one is even")
+for v in **enumerate**(<list>): - iterate through values and indices of a list
+   print(v)
+
+**### DICTIONARIES ###**
+{"<key>" : "<value>"}  #keys are unique, values are not, values can be anything, keys are limited and must be immutable (cant be replaced)
+-
+#!!! Order of items in dictionary doesn't mather! 
+<dictionary1> = {"<key1>": "<value1>", "<key2>": "<value2>", "<key3>": "<value3>"}
+<dictionary2> = {"<key3>": "<value3>", "<key1>": "<value1>", "<key2>": "<value2>"}
+<dictionary1> == <dictionary2>
+Ture
+-
+menu = {"tea" : "hot drink", "Cola" : "cold drink", "beef" : "meat"}   #define whole dictionary
+menu
+{'tea': 'hot drink', 'beef': 'meat', 'Cola': 'cold drink'}
+-
+menu["tea"]		#call for value related to "tea"
+'hot drink'
+menut.get(<key>, "<value2>")	#call for value related to <key> and if nothing found, print the <value2>
+menu.get("bread", "nothing found")
+nothing found
+-
+menu["tea"] = "hot beverage"		#redefine value for "tea"
+menu
+{'tea': 'hot beverage', 'beef': 'meat', 'Cola': 'cold drink'}
+-
+menu.keys()		#shows all keys in dictionary
+['tea', 'coffee', 'beef', 'Cola']
+-
+menu.values()		#shows all values in dictionary
+['hot beverage', 'hot beverage', 'meat', 'cold drink']
+-
+"tea" in menu		#test if key is in dictionary
+True
+"chicken" in menu
+False
+-
+menu["coffee"] = "hot beverage"		#add another key and its value to dictionary
+menu
+{'tea': 'hot beverage', 'coffee': 'hot beverage', 'beef': 'meat', 'Cola': 'cold drink'}
+-
+"beef" in menu
+True
+menu.pop("beef")		#remove key "beef" and its value from dictionary
+'meat'
+"beef" in menu
+False
+
+**### SETS ###**
+# sets are a special type of iterable simillar to lists where items are not stored in particular order and lack indexing, also there can't be duplicate items (thanks to this it is faster to check whether an item is part of set)
+myset={<item1>, <item2>, ... , <item n>} - you define set using curly brackets
+myset=set() - empty set you define with **set()** as curly brackets are used for dictionary
+myset.add(<item>)
+myset.remove(<item>)
+
+The **union** operator **|** combines two sets to form a new one containing items in either.
+The **intersection** operator **&** gets items only in both.
+The **difference** operator **-** gets items in the first set but not in the second.
+The **symmetric** **difference** operator **^** gets items in either set, but not both. 
+first = {1, 2, 3, 4, 5, 6}
+second = {4, 5, 6, 7, 8, 9}
+>>>
+print(first | second)
+print(first & second)
+print(first - second)
+print(second - first)
+print(first ^ second)
+>>>
+{1, 2, 3, 4, 5, 6, 7, 8, 9}
+{4, 5, 6}
+{1, 2, 3}
+{8, 9, 7}
+{1, 2, 3, 7, 8, 9}
+
+
+**### LOOPS ###**
+# Python does not have end command for finishing code in loop, it recognize it by indenting the code
+for i in <range()/list/>:
+	code
+while <condition>:
+	code
+until <condition>:
+	code
+while not <condition> - you can negate the condition, here is example:
+	AGE=""
+	while not AGE.isdigit():
+		AGE=raw_input("Enter your age:")
+
+continue - skips the rest of the code in one loop and continues to another loop
+break - beaks out of whole loop
+
+range() - prints numbers in range
+range(10) = [0, 2, 3, 4, 5, 6, 7, 8, 9]
+range(5, 10) = [5, 6, 7, 8, 9] - you can specify the range by adding lower and upper value !!! it will NOT PRINT the LAST VALUE, it always ends one step before !!!
+range(1, 15, 3) = [1, 4, 7, 10, 13] - you can specify steps
+
+**### FUNCTIONS ###**
+def <function_name>(<argument_1>,<argument_2>,<...>):
+	code
+	code
+	code
+-you can define explicit value in arguments, see example:
+	def odecet(A=0,B=0):
+		return A-B
+	odecet()
+	0
+	odecet(4)
+	4
+	odecet(2,5)
+	-3
+	odecet(B=2,A=5)
+	3
+	odecet(B=4)
+	-4
+-this way you can prevent some errors
+### if you want foo to provide some output value that you want to store in variable, then use return instead of print
+	def return_value()
+		print "This information is only for user without further usage"
+		return "This information needs to be used as output of return_value()"
+			!Once you return a value from a function, it immediately stops being executed.! 
+example1:
+	def return_value()
+	This information is only for user without further usage
+	This information needs to be used as output of return_value()
+example2:
+	VAR=return_value()
+	This information is only for user without further usage
+	> >>
+	print VAR
+	This information needs to be used as output of return_value()
+
+returning more values from function:
+	you can return more values in "tuple" (immutable list, list that can't be changed)
+	def return_more():
+		return 5, "y", 23
+	return_more()
+	(5, 'y', 23)
+	a=return_more()
+	print a
+	(5, 'y', 23)
+	a,b,c=return_more()
+	print c, a, b
+	23 5 y
+calling function with unknown # of arguments:
+	def sum(*args):			#inside function all arguments will be stored as tuple inside variable args
+		for arg in args:
+			total += arg
+		print args, "=", total
+	
+	#Using double ** you can create dictionary from passed arguments
+	def extra_stuff(**kwargs):
+		print kwargs
+	extra_stuff(name="Jess")
+	{'name' : 'Jess'}
+	
+	example2:
+	def print_stuff(**kwargs):
+		for key in kwargs:
+			print (key, kwargs[key])
+	print_stuff(name="Kelly", colors=["red", "yellow"], age = 20)
+	name : Kelly
+colors : ['red', 'yellow']
+	age : 20
+
+-if you are using multiple functions it is good to put them into one main function, that way Python will run them at the begining to show to the person runing this file how they work (at least this is how I understand it now ☺), following is the comon syntax used for this:
+
+def main():
+	funct1()
+	funct2()
+	
+if __name__ = "__main__":
+	main()
+
+- Functions can also be used as arguments of other functions:
+example:
+def add(x, y):
+  return x + y
+
+def do_twice(func, x, y):
+  return func(func(x, y), func(x, y))
+
+a = 5
+b = 10
+print(do_twice(add, a, b))
+30
+
+- Lambda functions (oneline function)
+(lambda <VAR>:<oneline fce>)(<arg>) 
+print((lambda x: x**2 + 5*x + 4) (-4))
+0
+...
+double = lambda x, y: x * y
+print(double(7, 2))
+14
+# lambda can be used for example in lists of functions
+
+**Decorators:**
+Decorators provide a way to modify functions using other functions.
+This is ideal when you need to extend the functionality of functions that you don't want to modify.
+Example:
+def decor(func):
+  def wrap():
+	print("============")
+	func()
+	print("============")
+  return wrap
+>>>
+def print_text():
+  print("Hello world!")
+>>>
+decorated = decor(print_text)
+decorated()
+>>>
+============
+Hello world!
+============
+>>>
+# It is possible to replace the function that is being decorated by the "decorated version":
+print_text=decor(print_text)
+print_text()
+>>>
+============
+Hello world!
+============
+# This can be done also using shortcut marked by "@" like this:
+@decor
+def print_text():
+	print("Hello world!")
+print_text()
+>>>
+============
+Hello world!
+============
+# You can also use multiple decorators at once:
+@decor1
+@decor2
+@decor3
+def my_func():
+	code
+my_func()
+>>>
+
+**### Generators ###**
+**Generators** are a type of iterable, like lists or tuples.
+Unlike lists, they don't allow indexing with arbitrary indices, but they can still be iterated through with for loops.
+They can be created using functions and the **yield** statement.
+The **yield** statement is used to define a generator, replacing the return of a function to provide a result to its caller without destroying local variables.
+Generators allow you to declare a function that behaves like an iterator, i.e. it can be used in a for loop.
+
+>>> def countdown(i):
+... 	while i > 0:
+... 		yield i
+... 		i -= 1
+>>> print(list(countdown(9)))
+[9, 8, 7, 6, 5, 4, 3, 2, 1]
+>>> for i in countdown(9):
+... 	print(i)
+... 
+9
+8
+7
+6
+5
+4
+3
+2
+1
+>>> for i in countdown(9):
+... 	print(list(countdown(i)))
+... 
+[9, 8, 7, 6, 5, 4, 3, 2, 1]
+[8, 7, 6, 5, 4, 3, 2, 1]
+[7, 6, 5, 4, 3, 2, 1]
+[6, 5, 4, 3, 2, 1]
+[5, 4, 3, 2, 1]
+[4, 3, 2, 1]
+[3, 2, 1]
+[2, 1]
+[1]
+
+**### Oject oriented programming ###**
+**Attributes:** Values contained in an object
+**Methods: **Functions for an object
+**Instance: **A new object
+**Class: **Blueprint
+**Subclass:** Basing one class of an existing class
+
+Define class:
+class <MyClass>(object):
+	code
+	code
+	code
+
+example:
+class <MyClass>(object):
+	<VAR1> = <value1>
+	<VAR2> = <value2>
+	def print_both(self):
+			print "Value 1 is:" + self.<VAR1> + "and value 2 is:" +self.<VAR2>
+<instance> = <MyClass>()
+<instance>.print_both()
+Value 1 is: <VAR1> nad Value 2 is: <VAR2>
+
+- by defiing function/method __init__ you can set up the atributes for your instance:
+class <Myclass>(object):
+	def ____init____(self, <atribute1>, <atribute2>):
+		self.<atribute1> = <value/atribute1>
+		self.<atribute2> = <value/atribute2>
+<instance> = <Myclass>()
+<instance>.<atribute1>()
+<value>
+- you can send values into __init__
+class <MyClass>(object):
+	def __init__(self, <VAR1>, <VAR2>)
+		self.<atribute1> = <VAR1>
+		self.<atribute2> = <VAR2>
+<instance> = <MyClass>(<VAR1> = <value1>, <VAR2> = <value2>)
+**Superclass:**
+# you can create superclass that can serve as blueprint to be inherited by other classes. To inherit a class from another class, put the superclass name in parentheses after the class name.
+example:
+class <Superclass_name>: 
+	def __init__(self, <atribute_1>, <atribute_2>):
+		self.<atribute1> = <value>
+		self.<atribute2> = <value>
+
+class <Class_1>(<Superclass_name>):
+	def <method_1>(self):
+		code
+		code
+class <Class_2>(<Superclass_name>):
+	def <method_2>(self):
+		code
+		code
+
+<instance> = <Class_2>(<atribute_1>, <atribute_2>)
+print(<instance>.<atribute_2>)
+<instance>.<method_2>()
+
+#classes can inherit also functionality of other classes with everything inherited before:
+class <Superclass_name>: 
+	def __init__(self, <atribute_1>, <atribute_2>):
+		self.<atribute1> = <value>
+		self.<atribute2> = <value>
+
+class <Class_1>(<Superclass_name>):
+	def <method_1>(self):
+		code
+		code
+class <Class_2>(<Class_1>):
+	def <method_2>(self):
+		code
+		code
+<instance> = <Class_2>(<atribute_1>, <atribute_2>)
+<instance>.<method_1>()
+
+# function **super**
+The function super is a useful inheritance-related function that refers to the parent class. It can be used to find the method with a certain name in an object's superclass.
+example:
+class <Superclass_name>: 
+	def __init__(self, <atribute_1>, <atribute_2>):
+		self.<atribute1> = <value>
+		self.<atribute2> = <value>
+	def <method_s>(self):
+		code
+
+class <Class_1>(<Superclass_name>):
+	def <method_1>(self):
+		code
+		super().<method_s>()
+
+<Class_1>().<method_1>()
+>>> <output of method_1 and also method_s>
+
+**Magic Methods:**
+
+
+**### MODULES ###**
+The basic way to use a module is to add **import** **module_name** at the top of your code, and then using **module_name.var** to access functions and values with the name var in the module.
+Some of the standard library's useful modules include string, re, datetime, math, random, os, multiprocessing, subprocess, socket, email, json, doctest, unittest, pdb, argparse and sys.
+complete documentation for the standard library is available online at www.python.org
+
+example:
+import random
+
+for i in range(5):
+   value = random.randint(1, 6)
+   print(value)
+
+There is another kind of import that can be used if you only need certain functions from a module.
+These take the form from module_name import var, and then var can be used as if it were defined normally in your code.
+For example, to import only the pi constant from the math module:
+from math import pi
+
+print(pi)
+3.141592653589793
+
+You can import a module or object under a different name using the as keyword. This is mainly used when a module or object has a long or confusing name.
+For example:
+from math import sqrt as square_root
+print(square_root(100))
+
+10.0
+
+**### WORKING WITH FILES ###**
+myfile = open("filename.txt")
+
+**Opening Files**
+You can specify the mode used to open a file by applying a second argument to the open function.
+Sending "r" means open in read mode, which is the default.
+Sending "w" means write mode, for rewriting the contents of a file (if the file hase any content before, it will be deleted)
+Sending "a" means append mode, for adding new content to the end of the file.
+Adding "b" to a mode opens it in binary mode, which is used for non-text files (such as image and sound files).
+
+<FILE>=open("filename.txt") - defaulte (read) mode
+<FILE>=open("filename.txt", "**w**") - write mode
+<FILE>=open("filename.txt", "**w+**") - write mode (if file doesn't exists, it will automatically create new one)
+<FILE>=open("filename.txt", "**a**") - append to the end of file
+<FILE>=open("filename.txt", "**r**") - read mode
+<FILE>=open("filename.txt", "**wb**") - binary write mode
+<FILE>.close() - Once a file has been opened and used, you should close it
+It is good practice to avoid wasting resources by making sure that files are always closed after they have been used. One way of doing this is to use try and finally.
+//try://
+//   f = open("filename.txt")//
+//   print(f.read())//
+//finally://
+//   f.close()//
+
+print(<FILE>.read()) - print content of the FILE
+<CONTENT>=<FILE>.read() - load content of file into variable to be able to work with it
+print(<FILE>.read(16)) - this will print first 16 Bytes of file, using it again will print next number of bytes
+print(<FILE>.readlines()) - return a list in which each element is a line in the file.
+You can also use a for loop to iterate through the lines in the file:
+//for line in file://
+	//print(line)//
+<FILE>.write("<your text>") - writes into file defined in <FILE>, also will returns number of bytes written
+
+
+**### ERROR MESSAGES ###**
+**Exception**
+exception = type of error
+To handle exceptions, and to call code when an exception occurs, you can use a **try/except** statement.
+The try block contains code that might throw an exception. If that exception occurs, the code in the try block stops being executed, and the code in the except block is run. If no error occurs, the code in the except block doesn't run.
+For example:
+try:
+   num1 = 7
+   num2 = 0
+   print (num1 / num2)
+   print("Done calculation")
+except ZeroDivisionError:
+   print("An error occurred")
+   print("due to zero division")
+>>>
+An error occurred
+due to zero division
+>>>
+
+A try statement can have multiple different except blocks.
+example:
+except ZeroDivisionError:
+   print("Divided by zero")
+except (ValueError, TypeError):
+   print("Error occurred")
+
+**finally**
+To ensure some code runs no matter what errors occur, you can use a finally statement. The finally statement is placed at the bottom of a try/except statement. Code within a finally statement always runs after execution of the code in the try, and possibly in the except, blocks.
+
+example:
+try:
+   print("Hello")
+   print(1 / 0)
+except ZeroDivisionError:
+   print("Divided by zero")
+finally:
+   print("This code will run no matter what")
+>>>
+Hello
+Divided by zero
+This code will run no matter what
+>>>
+
+You can **raise** exceptions by using the raise statement.
+
+print(1)
+raise <Type_of_error>("<Error message>")
+print(2)
+>>>
+1
+Type_of_error:Error message
+>>>
+
+**Assertions**
+An assertion is a sanity-check that you can turn on or turn off when you have finished testing the program.
+An expression is tested, and if the result comes up false, an exception is raised.
+Assertions are carried out through use of the assert statement.
+Programmers often place assertions at the start of a function to check for valid input, and after a function call to check for valid output.
+
+print(1)
+assert 2 + 2 == 4
+print(2)
+assert (1 + 1 == 3), "<optional error message>"
+print(3)
+>>>
+1
+2
+AssertionError:Error_message
+>>>
+
+**### USABLE PREDEFINED FUNCTIONS ###**
+
+--------------------
+The function **map** takes a function and an iterable as arguments, and returns a new iterable with the function applied to each argument. 
+def add_five(x):
+  return x + 5
+>>>
+nums = [11, 22, 33, 44, 55]
+result = list(map(add_five, nums))
+print(result)
+>>>
+[16, 27, 38, 49, 60]
+-or
+nums = [11, 22, 33, 44, 55]
+result = list(map(lambda x: x+5, nums))
+print(result)
+>>>
+[16, 27, 38, 49, 60]
+>>>
+
+--------------------
+The function **filter** filters an iterable by removing items that don't match a predicate (a function that returns a Boolean).
+Example:
+nums = [11, 22, 33, 44, 55]
+res = list(filter(lambda x: x%2==0, nums))
+print(res)
+>>>
+[22, 44]
+>>>
+
+**### USEFUL MODULES ###**
+**random**
+(random.randint)
+
+**itertools:**
+One type of function it produces is infinite iterators.
+The function **count** counts up infinitely from a value.
+The function **cycle** infinitely iterates through an iterable (for instance a list or string).
+The function **repeat** repeats an object, either infinitely or a specific number of times.
+example:
+from itertools import count
+>>>
+for i in count(3):
+  print(i)
+  if i >=11:
+	break
+>>>
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+**takewhile** - takes items from an iterable while a predicate function remains true;
+**chain** - combines several iterables into one long one;
+**accumulate** - returns a running total of values in an iterable.
+example:
+from itertools import accumulate, takewhile
+
+nums = list(accumulate(range(8)))
+print(nums)
+print(list(takewhile(lambda x: x<= 6, nums)))
+>>>
+[0, 1, 3, 6, 10, 15, 21, 28]
+[0, 1, 3, 6]
+
+
+There are also several combinatoric functions in itertool, such as **product** and **permutation**.
+These are used when you want to accomplish a task with all possible combinations of some items.
+Example:
+from itertools import product, permutations
+
+letters = ("A", "B")
+print(list(product(letters, range(2))))
+print(list(permutations(letters))) 
+>>>
+[('A', 0), ('A', 1), ('B', 0), ('B', 1)]
+[('A', 'B'), ('B', 'A')]
