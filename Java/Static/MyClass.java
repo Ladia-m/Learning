@@ -1,5 +1,10 @@
 public class MyClass {
-    public static void main(String[ ] args) {
+    public static void main(String[] args) {
+        // you can call COUNT because as static it belongs to class
+        System.out.println(Counter.COUNT);
+        /* next line will not work, you can't call non-static variable before creating instance, because
+         * it is bounded to specifici instance. */
+        //System.out.println(Counter.num);
         Counter c1 = new Counter();
         Counter c2 = new Counter();
         Counter c3 = new Counter();
