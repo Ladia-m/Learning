@@ -1,4 +1,0 @@
-Lada,24
-Jana,123
-Jiri,2342
-Ondrej,134
