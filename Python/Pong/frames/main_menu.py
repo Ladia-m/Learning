@@ -7,7 +7,7 @@ class MainMenu(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-        self.config(bg="yellow")
+        self.config(bg="black", width=800, height=600)
         self.game_logo(self).grid(row=0)
         self.menu(controller).grid(row=1)
 
@@ -19,7 +19,6 @@ class MainMenu(Frame):
 
     def menu(self, controller):
         menu_frame = Frame(self)
-        menu_frame.grid(pady=10)
         buttons = {
             "start_game": ttk.Button(menu_frame, text="Start game", command=lambda: controller.show_frame("Game")),
             "exit_game": ttk.Button(menu_frame, text="Exit game", command=lambda: sys.exit(0))
