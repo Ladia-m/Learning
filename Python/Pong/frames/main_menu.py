@@ -10,6 +10,8 @@ class MainMenu(Frame):
         self.config(bg="black", width=800, height=600)
         self.game_logo(self).grid(row=0)
         self.menu(controller).grid(row=1)
+        button_style = ttk.Style()
+        button_style.configure("W.TButton", font=("calibri", 10, "bold"), background="black", foreground="white")
 
     @staticmethod
     def game_logo(parent):
@@ -25,6 +27,7 @@ class MainMenu(Frame):
         }
         counter = 0
         for button in buttons.keys():
+            buttons[button].config(style="W.TButton")
             buttons[button].grid(row=counter, pady=5)
             counter += 1
         return menu_frame
