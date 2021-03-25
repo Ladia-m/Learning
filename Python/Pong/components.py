@@ -6,7 +6,7 @@ class PlayField(Frame):
     def __init__(self, parent_frame):
         Frame.__init__(self, parent_frame)
         field = Canvas(self, width=800, height=500, bg="black")
-        field.create_line(397, 0, 397, 500, fill="#ffffff", dash=(15, 10), width=6)
+        field.create_line(397, 0, 397, 500, fill="#ffffff", dash=(20, 10), width=6)
         field.pack()
 
 
