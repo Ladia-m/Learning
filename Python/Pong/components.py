@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Frame, BOTH, ttk, font
+from tkinter import Canvas, Frame, ttk
 
 
 class PlayField(Canvas):
@@ -19,9 +19,9 @@ class Paddle(Canvas):
     x_padding = 10
     width = 12
     height = 80
-    speed = 10
+    speed = 8
 
-    def __init__(self, play_field: Canvas):
+    def __init__(self, master_frame, play_field: Canvas, up_key, down_key):
         super().__init__(play_field, width=self.width, height=self.height, bg="white")
         if Paddle.paddle_objects_created > 1:
             raise SystemError("Can't create more than 2 Paddle objects")
@@ -29,14 +29,17 @@ class Paddle(Canvas):
         x = self.x_padding if Paddle.paddle_objects_created == 1 else PlayField.width - self.x_padding - self.width
         self.y_position = PlayField.height // 2 - self.height // 2
         self.place(x=x, y=self.y_position)
+        self.master_frame, self.up_key, self.down_key = master_frame, up_key, down_key
+        self.master_frame.bind(f"<{up_key}>", self.move_up)
+        self.master_frame.bind(f"<{down_key}>", self.move_down)
 
-    def move_up(self):
+    def move_up(self, event):
         self.y_position -= self.speed
         self.place(y=self.y_position)
 
-    def move_down(self):
-        lowest_position = PlayField.height - self.height
-        ...
+    def move_down(self, event):
+        self.y_position += self.speed
+        self.place(y=self.y_position)
 
 
 class ScoreBorad(Frame):

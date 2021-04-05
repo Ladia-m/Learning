@@ -16,11 +16,12 @@ class Game(Frame):
 
         play_field = PlayField(self)
         play_field.grid(row=1)
-        self.paddle_1 = Paddle(play_field)
-        self.paddle_2 = Paddle(play_field)
+        self.paddle_1 = Paddle(self, play_field, "Up", "Down")
+        self.paddle_2 = Paddle(self, play_field, "w", "s")
         self.test_label = ttk.Label(self)
         self.test_label.grid(row=3)
-        self.controller.bind("<Key>", self.react)
+
+        self.focus_set()
 
     def ui(self):
         ui_frame = Frame(self, width=800, height=100)
@@ -31,5 +32,6 @@ class Game(Frame):
         score_board.pack(anchor="center")
         return ui_frame
 
-    def react(self, event):
-        self.paddle_1.move_up()
+    # def react(self, event):
+    #     while not self.bind("<KeyRelease-Up>"):
+    #         self.paddle_1.move_up()
