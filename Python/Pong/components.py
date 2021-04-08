@@ -1,4 +1,5 @@
-from tkinter import Canvas, Frame, ttk
+from tkinter import Tk, Canvas, Frame, BOTH, ttk, font
+from time import sleep
 
 
 class PlayField(Canvas):
@@ -19,9 +20,9 @@ class Paddle(Canvas):
     x_padding = 10
     width = 12
     height = 80
-    speed = 8
+    speed = 5
 
-    def __init__(self, master_frame, play_field: Canvas, up_key, down_key):
+    def __init__(self, master, play_field: Canvas, up_key, down_key):
         super().__init__(play_field, width=self.width, height=self.height, bg="white")
         if Paddle.paddle_objects_created > 1:
             raise SystemError("Can't create more than 2 Paddle objects")
@@ -29,17 +30,41 @@ class Paddle(Canvas):
         x = self.x_padding if Paddle.paddle_objects_created == 1 else PlayField.width - self.x_padding - self.width
         self.y_position = PlayField.height // 2 - self.height // 2
         self.place(x=x, y=self.y_position)
-        self.master_frame, self.up_key, self.down_key = master_frame, up_key, down_key
-        self.master_frame.bind(f"<{up_key}>", self.move_up)
-        self.master_frame.bind(f"<{down_key}>", self.move_down)
+        self.master, self.up_key, self.down_key = master, up_key, down_key
+        self.master.bind(f"<{up_key}>", self.move_up_repeat)
+        self.master.bind(f"<KeyRelease-{up_key}>", self.stop_move_up_repeat)
+        self.master.bind(f"<{down_key}>", self.move_down_repeat)
+        self.master.bind(f"<KeyRelease-{down_key}>", self.stop_move_down_repeat)
+        self.up_released = True
+        self.down_released = True
 
-    def move_up(self, event):
+    def move_up_repeat(self, event):
+        self.up_released = False
+        while not self.up_released:
+            self.move_up()
+            sleep(0.02)
+            self.master.update()
+
+    def move_up(self):
         self.y_position -= self.speed
         self.place(y=self.y_position)
 
-    def move_down(self, event):
+    def stop_move_up_repeat(self, event):
+        self.up_released = True
+
+    def move_down_repeat(self, event):
+        self.down_released = False
+        while not self.down_released:
+            self.move_down()
+            sleep(0.02)
+            self.master.update()
+
+    def move_down(self):
         self.y_position += self.speed
         self.place(y=self.y_position)
+
+    def stop_move_down_repeat(self, event):
+        self.down_released = True
 
 
 class ScoreBorad(Frame):
