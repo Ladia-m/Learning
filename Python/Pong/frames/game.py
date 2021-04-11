@@ -16,10 +16,9 @@ class Game(Frame):
 
         play_field = PlayField(self)
         play_field.grid(row=1)
-        self.paddle_1 = Paddle(self, play_field, "Up", "Down")
-        self.paddle_2 = Paddle(self, play_field, "w", "s")
-        self.test_label = ttk.Label(self)
-        self.test_label.grid(row=3)
+        self.paddle_1 = Paddle(self.controller, play_field, "Up", "Down")
+        self.paddle_2 = Paddle(self.controller, play_field, "w", "s")
+        self.ball = Ball(self, play_field)
 
         self.focus_set()
 
@@ -28,10 +27,6 @@ class Game(Frame):
         button = ttk.Button(ui_frame, text="Main menu", style="W.TButton",
                             command=lambda: self.controller.show_frame("MainMenu"))
         button.pack(anchor="e")
-        score_board = ScoreBorad(ui_frame)
+        score_board = ScoreBoard(ui_frame)
         score_board.pack(anchor="center")
         return ui_frame
-
-    # def react(self, event):
-    #     while not self.bind("<KeyRelease-Up>"):
-    #         self.paddle_1.move_up()
