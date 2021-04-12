@@ -34,6 +34,8 @@ class Pong(Tk):
         frame = self.frames[page_name]
         frame.grid()
         self.active_frame = page_name
+        if page_name == "Game":
+            self.frames["Game"].start_game()
 
     def center(self):
         positionRight = int(self.winfo_screenwidth() / 2 - self.window_width / 2)
