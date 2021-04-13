@@ -30,6 +30,12 @@ class ScoreBoard(Frame):
                 return "right"
         return False
 
+    def reset(self):
+        self.left_player_score = 0
+        self.left_score_label.config(text=str(self.left_player_score))
+        self.right_player_score = 0
+        self.right_score_label.config(text=str(self.right_player_score))
+
 
 class PlayField(Canvas):
     width = 800
@@ -37,11 +43,11 @@ class PlayField(Canvas):
 
     def __init__(self, parent_frame):
         Canvas.__init__(self, parent_frame, width=self.width, height=self.height, bg="black")
-        self.create_line(self.width / 2, 0, self.width / 2, 500, fill="#ffffff", dash=(20, 10), width=6)
-        self.create_line(1, 1, 800, 1, fill="#ffffff", width=1)
-        self.create_line(800, 1, 800, 500, fill="#ffffff", width=1)
-        self.create_line(800, 500, 1, 500, fill="#ffffff", width=1)
-        self.create_line(1, 500, 1, 1, fill="#ffffff", width=1)
+        self.create_line(self.width / 2, 0, self.width / 2, PlayField.height, fill="#ffffff", dash=(20, 10), width=6)
+        self.create_line(1, 1, PlayField.width, 1, fill="#ffffff", width=1)
+        self.create_line(PlayField.width, 1, PlayField.width, PlayField.height, fill="#ffffff", width=1)
+        self.create_line(PlayField.width, PlayField.height, 1, PlayField.height, fill="#ffffff", width=1)
+        self.create_line(1, PlayField.height, 1, 1, fill="#ffffff", width=1)
 
 
 class Paddle(Canvas):
@@ -56,7 +62,8 @@ class Paddle(Canvas):
         if Paddle.paddle_objects_created > 1:
             raise SystemError("Can't create more than 2 Paddle objects")
         Paddle.paddle_objects_created += 1
-        self.x_position = self.x_padding if Paddle.paddle_objects_created == 1 else PlayField.width - self.x_padding - self.width
+        self.x_position = self.x_padding if Paddle.paddle_objects_created == 1\
+            else PlayField.width - self.x_padding - self.width
         self.y_position = PlayField.height // 2 - self.height // 2
         self.place(x=self.x_position, y=self.y_position)
         self.controller, self.up_key, self.down_key = controller, up_key, down_key
@@ -86,6 +93,10 @@ class Paddle(Canvas):
             self.y_position += self.speed
         if 0 < self.y_position < PlayField.height - Paddle.height:
             self.place(y=self.y_position)
+
+    def reset(self):
+        self.y_position = PlayField.height // 2 - self.height // 2
+        self.place(y=self.y_position)
 
 
 class Ball(Canvas):
