@@ -87,11 +87,13 @@ class Paddle(Canvas):
         self.move_down_key = False
 
     def move(self):
+        y_position = self.y_position
         if self.move_up_key:
-            self.y_position -= self.speed
+            y_position -= self.speed
         if self.move_down_key:
-            self.y_position += self.speed
-        if 0 < self.y_position < PlayField.height - Paddle.height:
+            y_position += self.speed
+        if 0 < y_position < PlayField.height - Paddle.height:
+            self.y_position = y_position
             self.place(y=self.y_position)
 
     def reset(self):
