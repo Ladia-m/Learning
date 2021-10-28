@@ -3,11 +3,17 @@ from bs4 import BeautifulSoup
 import re
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import json
 
-CLIENT_ID = "***REMOVED***"
-CLIENT_SECRET = "***REMOVED***"
-PLAYLIST_ID = "***REMOVED***"
-REDIRECT_URI = "***REMOVED***"
+secrets_file = "../../../../secrets/spotify.json"
+
+with open(secrets_file) as f:
+    data = json.load(f)
+
+CLIENT_ID = data.get("CLIENT_ID")
+CLIENT_SECRET = data.get("CLIENT_SECRET")
+PLAYLIST_ID = data.get("PLAYLIST_ID")
+REDIRECT_URI = data.get("REDIRECT_URI")
 RANK = "rank"
 SONG = "song"
 ARTIST = "artist"
